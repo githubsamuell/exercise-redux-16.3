@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { loginUser } from '../actions';
 
 function Login({handleLoginUser, isUserLoggedIn}) {
   const [email, setEmail] = useState('')
@@ -12,7 +10,6 @@ function Login({handleLoginUser, isUserLoggedIn}) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    handleLoginUser({ email, password });
   }
 
   useEffect(() => {
@@ -46,22 +43,4 @@ function Login({handleLoginUser, isUserLoggedIn}) {
   );
 }
 
-//1º LER 
-//RECEBE O STORE COMO PARAM
-//RETORNAR UM OBJETO
-const mapStateToProps = ({user}) => {
-  return ({
-    isUserLoggedIn: user.isUserLoggedIn
-  })
-}
-
-// //2ºESCREVER
-// //RECEBE O DISPATCH COMO PARAM
-// //RETORNA UM OBJETO
-const mapDispatchToProps = (dispatch) => {
-  return ({
-    handleLoginUser: (user) => dispatch(loginUser(user)),
-  })
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addUser } from '../actions';
 
 function NewUser({handleAddUser}) {
   const [name, setName] = useState('');
@@ -11,8 +9,6 @@ function NewUser({handleAddUser}) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    handleAddUser({ name, email, age });
-    setIsregistered(true);
   }
 
   return (
@@ -55,22 +51,4 @@ function NewUser({handleAddUser}) {
   );
 }
 
-//1º LER 
-//RECEBE O STORE COMO PARAM
-//RETORNAR UM OBJETO
-// const mapStateToProps = (state) => {
-//   return ({
-//     currentValue:state.counter.currentValue
-//   })
-// }
-
-// //2ºESCREVER
-// //RECEBE O DISPATCH COMO PARAM
-// //RETORNA UM OBJETO
-const mapDispatchToProps = (dispatch) => {
-  return ({
-    handleAddUser: (user) => dispatch(addUser(user)),
-  })
-}
-
-export default connect(null, mapDispatchToProps)(NewUser);
+export default NewUser;
